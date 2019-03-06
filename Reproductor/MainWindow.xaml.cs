@@ -143,6 +143,8 @@ namespace Reproductor
 
                 volume = new VolumeSampleProvider(fades);
                 volume.Volume = (float)sldVolumen.Value;
+                //
+
 
                 //inisializamos el output
                 output.Init(volume);

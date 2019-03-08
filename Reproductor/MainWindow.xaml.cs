@@ -41,6 +41,7 @@ namespace Reproductor
 
         //se declara para el efecto del fade in y dafe out
         FadeInOutSampleProvider fades;
+        Delay delay;
 
         //es una variable para validar si se esta arrastrando o no el slider
         bool dragging = false;
@@ -123,6 +124,9 @@ namespace Reproductor
             else
             {
                 reader = new AudioFileReader(txtRutaArchivo.Text);
+                delay = new Delay(reader);
+
+
 
                 //Se le da el archivo y si queremos que inicie en total silencio o no
                 fades = new FadeInOutSampleProvider(reader, true);

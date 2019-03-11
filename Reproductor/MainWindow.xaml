@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reproductor"
         mc:Ignorable="d"
-        Title="R E P R O D U C T O R" Height="277.732" Width="593.903">
+        Title="R E P R O D U C T O R" Height="382.128" Width="612.615">
     <Grid Margin="0,0,2,0">
         <TextBlock HorizontalAlignment="Left" Margin="33,24,0,0" TextWrapping="Wrap" Text="Archivo." VerticalAlignment="Top"/>
         <TextBox x:Name="txtRutaArchivo" HorizontalAlignment="Left" Height="23" Margin="33,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
@@ -22,11 +22,19 @@
         <TextBlock HorizontalAlignment="Left" Margin="525,24,0,0" TextWrapping="Wrap" Text="Volumen." VerticalAlignment="Top"/>
         <TextBlock x:Name="lblPorcentajeVolumen" Margin="500,156,35,0" TextWrapping="Wrap" Text="50%" VerticalAlignment="Top" RenderTransformOrigin="-0.48,-0.536"/>
         <ComboBox HorizontalAlignment="Left" Margin="312,84,0,0" VerticalAlignment="Top" Width="208" x:Name="cbSalida"/>
-        <TextBox x:Name="txtDuracionFadeIn" HorizontalAlignment="Left" Height="23" Margin="22,202,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="61"/>
-        <TextBlock HorizontalAlignment="Left" Margin="25,186,0,0" TextWrapping="Wrap" Text="Duracion Fade in (s):" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDuracionFadeIn" HorizontalAlignment="Left" Height="23" Margin="25,205,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="61"/>
+        <TextBlock HorizontalAlignment="Left" Margin="25,189,0,0" TextWrapping="Wrap" Text="Duracion Fade in (s):" VerticalAlignment="Top"/>
         <TextBox x:Name="txtDuracionFadeOut" HorizontalAlignment="Left" Height="23" Margin="151,205,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="61"/>
         <TextBlock HorizontalAlignment="Left" Margin="151,189,0,0" TextWrapping="Wrap" Text="Duracion Fade out (s):" VerticalAlignment="Top"/>
         <Button x:Name="btnFadeOut" Content="Iniciar Fade Out" HorizontalAlignment="Left" Margin="284,208,0,0" VerticalAlignment="Top" Width="97" Click="btnFadeOut_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="25,246,0,0" TextWrapping="Wrap" Text="Delay" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="120,269,0,0" TextWrapping="Wrap" Text="Offset:" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbDelayActivo" Content="Activo" HorizontalAlignment="Left" Margin="25,267,0,0" VerticalAlignment="Top" Checked="cbDelayActivo_Checked"/>
+        <Slider x:Name="sldDelayOffset" HorizontalAlignment="Left" Margin="120,290,0,0" VerticalAlignment="Top" Width="135" Maximum="3"/>
+        <Slider x:Name="sldDelayGanancia" HorizontalAlignment="Left" Margin="279,290,0,0" VerticalAlignment="Top" Width="135"/>
+        <TextBlock x:Name="lblDelayOffset" HorizontalAlignment="Left" Margin="230,317,0,0" TextWrapping="Wrap" Text="0 ms" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblDelayGanancia" HorizontalAlignment="Left" Margin="401,317,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="279,269,0,0" TextWrapping="Wrap" Text="Ganancia:" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

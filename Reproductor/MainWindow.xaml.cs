@@ -242,5 +242,11 @@ namespace Reproductor
                 fades.BeginFadeOut(milisegundosFadeOut);
             }
         }
+
+        private void cbDelayActivo_Checked(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
     }
 }

@@ -10,7 +10,18 @@ namespace Reproductor
     class Delay : ISampleProvider
     {
         private ISampleProvider fuente;
-        public int OffsetMilisegundos { get; set; }
+        private int offsetMilisegundos;
+        public int OffsetMilisegundos {
+            get
+            {
+                return offsetMilisegundos;
+            }
+            set
+            {
+                offsetMilisegundos = value;
+                cantidadMuestrasOffset = (int)(((float)OffsetMilisegundos / 1000.0f) * (float)fuente.WaveFormat.SampleRate);
+            }
+        }
         private int cantidadMuestrasOffset;
 
         private List<float> bufferDelay = new List<float>();
@@ -18,6 +29,10 @@ namespace Reproductor
         private int duracionBufferSegundos;
         private int cantidadMuestrasTranscurridas = 0;
         private int cantidadMuestrasBorradas = 0;
+
+
+        public bool Activo { get; set; }
+
 
         public WaveFormat WaveFormat
         {
@@ -29,6 +44,7 @@ namespace Reproductor
 
         public Delay(ISampleProvider fuente)
         {
+            Activo = false;
             this.fuente = fuente;
             OffsetMilisegundos = 500;
             cantidadMuestrasOffset = (int)(((float)OffsetMilisegundos / 1000.0f)*(float)fuente.WaveFormat.SampleRate);
@@ -38,6 +54,7 @@ namespace Reproductor
 
         public int Read(float[] buffer, int offset, int count)
         {
+
             //leemos las muestras de la señal fuente
             var read = fuente.Read(buffer, offset, count);
             //Calcular tiempo transcurrido
@@ -55,15 +72,17 @@ namespace Reproductor
                 bufferDelay.RemoveRange(0, diferencia);
                 cantidadMuestrasBorradas += diferencia;
             }
-            //Aplicar el efecto
-            if (milisegundosTranscurridos > OffsetMilisegundos)
+            if(Activo)
             {
-                for (int i=0; i<read; i++)
+                //Aplicar el efecto
+                if (milisegundosTranscurridos > OffsetMilisegundos)
                 {
-                    buffer[offset + 1] += bufferDelay[cantidadMuestrasTranscurridas- cantidadMuestrasBorradas + i - cantidadMuestrasOffset ];
+                    for (int i = 0; i < read; i++)
+                    {
+                        buffer[offset + 1] += bufferDelay[cantidadMuestrasTranscurridas - cantidadMuestrasBorradas + i - cantidadMuestrasOffset];
+                    }
                 }
             }
-
             cantidadMuestrasTranscurridas += read;
             return read;
         }

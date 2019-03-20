@@ -125,7 +125,8 @@ namespace Reproductor
             {
                 reader = new AudioFileReader(txtRutaArchivo.Text);
                 delay = new Delay(reader);
-
+                delay.Activo = (bool)cbDelayActivo.IsChecked;
+                delay.OffsetMilisegundos = (int)sldDelayOffset.Value;
 
 
                 //Se le da el archivo y si queremos que inicie en total silencio o no
@@ -243,10 +244,27 @@ namespace Reproductor
             }
         }
 
-        private void cbDelayActivo_Checked(object sender, RoutedEventArgs e)
+        private void cbDelayActivo_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (delay != null) { 
+            delay.Activo = (bool)cbDelayActivo.IsChecked;
+            }
 
         }
+
+        private void sldDelayOffset_ValueChanged(object sender, RoutedEventArgs e)
+        {
+            if (lblDelayOffset != null)
+            {
+                lblDelayOffset.Text = sldDelayOffset.Value.ToStringString()+"ms";
+            }
+            if (delay != null)
+            {
+                delay.OffsetMilisegundos = (int)sldDelayOffset;
+            }
+        }
+
+
+
     }
 }
